@@ -1,0 +1,23 @@
+{
+  "name": "dicegame",
+  "version": "1.0.0",
+  "description": "Play with chances and roll the dice!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YosepRA/DiceGame.git"
+  },
+  "author": "YosepRA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YosepRA/DiceGame/issues"
+  },
+  "homepage": "https://github.com/YosepRA/DiceGame#readme",
+  "devDependencies": {
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1"
+  }
+}
