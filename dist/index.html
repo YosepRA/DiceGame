@@ -4,11 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="public/css/main.css" />
+    <link rel="stylesheet" href="public/css/main.min.css" />
     <title>Dice Game</title>
   </head>
   <body>
-    <h1>Dice Game</h1>
+    <header>
+      <h1>Dice Game</h1>
+      <h2>Roll em' up. Let the fortune choose.</h2>
+    </header>
+
+    <main>
+      <section class="game">
+        <div class="dice">
+          <div class="dice-dialog">Player 1</div>
+          <div class="dice-result">12</div>
+          <div class="dice-roll">
+            <button>Roll</button>
+          </div>
+        </div>
+
+        <div class="versus">VS</div>
+
+        <div class="dice">
+          <div class="dice-dialog">Player 2</div>
+          <div class="dice-result">12</div>
+          <div class="dice-roll">
+            <button>Roll</button>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <script src="public/js/main.js"></script>
   </body>
