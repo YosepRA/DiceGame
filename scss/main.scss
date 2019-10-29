@@ -1,40 +1,58 @@
+@import 'config';
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #ddd;
+  background-color: $main-background;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
+  width: 80%;
+  margin: 1rem auto;
+  background-color: rgba(#ccc, 0.7);
   text-align: center;
+  padding: 0.5rem 0;
+  border-radius: $container-border-radius;
+  @include introAnimation();
 }
 
 main {
   width: 80%;
   margin: 0px auto;
-  background-color: #ccc;
+  background-color: rgba(#ccc, 0.7);
+  border-radius: $container-border-radius;
+  opacity: 0;
+  @include introAnimation();
+  animation-delay: 250ms;
 
   .game {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
+    opacity: 0;
+    @include introAnimation();
+    animation-delay: 500ms;
 
     .separator {
-      .separator-versus {
-        background-color: #bbb;
-        padding: 2rem;
-        border-radius: 50%;
-        font-size: 1.5rem;
-      }
+      background-color: #bbb;
+      padding: 2rem;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      @include easeOut();
 
-      .separator-restart {
-        margin-top: 1rem;
-        text-align: center;
+      &.finished {
+        border-radius: 0.3rem;
+        padding: 0.8rem 1.1rem;
+        font-size: 1.2rem;
+        background: $button-bgcolor;
+        color: white;
+        cursor: pointer;
 
-        button {
-          font-size: 1rem;
-          padding: 0.5rem 0.8rem;
+        &:hover {
+          background: darken($button-bgcolor, 15);
         }
       }
     }
@@ -42,9 +60,11 @@ main {
     .dice {
       position: relative;
       width: 40%;
-      margin: 3rem 0px;
+      margin: 4rem 0px 3rem 0px;
+      border-radius: $container-border-radius;
       text-align: center;
       background: #bbb;
+      @include easeOut();
 
       .dice-dialog {
         position: absolute;
@@ -53,8 +73,13 @@ main {
         width: 80%;
         padding: 1rem 1.3rem;
         border-radius: 1rem 1rem 0px 0px;
-        background: lightgreen;
+        background: #bbb;
         font-size: 1.3rem;
+        @include easeOut();
+
+        &.win {
+          background: lightgreen;
+        }
       }
 
       .dice-result,
@@ -75,5 +100,28 @@ main {
         background: lightgreen;
       }
     }
+  }
+}
+
+button {
+  cursor: pointer;
+  background: $button-bgcolor;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  transition: background 200ms ease-out;
+
+  &:hover {
+    background: darken($button-bgcolor, 15);
+  }
+}
+
+@keyframes intro {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

@@ -1,0 +1,11 @@
+$main-background: #1b475a;
+$button-bgcolor: #29708e;
+$container-border-radius: 0.7rem;
+
+@mixin easeOut {
+  transition: all 300ms ease-out;
+}
+
+@mixin introAnimation {
+  animation: intro 1s ease-out forwards;
+}
