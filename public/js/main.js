@@ -1,8 +1,9 @@
 let diceBoxes = document.querySelectorAll('.dice');
 let rollButtons = document.querySelectorAll('.dice-roll button');
 let rollButtonsArray = Array.from(rollButtons);
-let restartBtn = document.querySelector('.separator-restart');
+let separator = document.querySelector('.separator');
 
+// MODEL
 let diceGame = {
   players: [{ rollResult: 0, isRolled: false }, { rollResult: 0, isRolled: false }],
   status: 'playing'
@@ -57,6 +58,8 @@ function updateView(rollButton, randNum, winner) {
   // If undefined → all players haven't rolled their dice.
   // If number → the game is finished and the winner or a tie game has been decided.
   if (winner != undefined) {
+    separatorToggle();
+
     if (winner === 0) {
       // Tie game
       for (const diceBox of diceBoxes) {
@@ -69,7 +72,8 @@ function updateView(rollButton, randNum, winner) {
       let dialogBox = winnerBox.firstElementChild;
 
       winnerBox.classList.add('win');
-      dialogBox.textContent += ' win';
+      dialogBox.classList.add('win');
+      dialogBox.textContent += ' WIN';
     }
   }
 }
@@ -86,6 +90,8 @@ function restart() {
   diceGame = Object.assign(diceGame, { status: 'playing' });
 
   // Reset view.
+  separatorToggle();
+
   for (let i = 0; i < diceBoxes.length; i++) {
     let diceBox = diceBoxes[i];
     let dialogBox = diceBox.children[0];
@@ -93,17 +99,27 @@ function restart() {
     let rollButton = diceBox.children[2];
 
     diceBox.classList.remove('win');
+    dialogBox.classList.remove('win');
     dialogBox.textContent = `Player ${i + 1}`;
     diceResult.textContent = '0';
     rollButton.style.visibility = 'visible';
   }
 }
 
+function separatorToggle() {
+  let text = separator.textContent === 'Restart' ? 'VS' : 'Restart';
+
+  if (diceGame.status === 'finished') separator.addEventListener('click', restart);
+  else separator.removeEventListener('click', restart);
+
+  separator.classList.toggle('finished');
+  separator.textContent = text;
+}
+
 function init() {
   rollButtons.forEach(roll => {
     roll.addEventListener('click', diceRoll);
   });
-  restartBtn.addEventListener('click', restart);
 }
 
 init();
